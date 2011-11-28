@@ -62,21 +62,61 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% 
+% yt = zeros(m, num_labels);
+% 
+% for i=1:num_labels
+%   yt(:,i) = (y==i);
+% end
 
+a1 = X;
+z2 = [ones(m, 1) a1] * Theta1';
+a2 = sigmoid(z2);
+z3 = [ones(m, 1) a2] * Theta2';
+h = a3 = sigmoid(z3);
 
+% [r,ridx] = max(h,[],2);
 
+J = sum(sum(-y .* log(h) - (1 - y) .* log(1 - h))) / m;
 
+% temp1 = Theta1(:,2:input_layer_size+1); 
+% temp2 = Theta2(:,2:hidden_layer_size+1);
 
+J = J + lambda * (sum(sum(Theta1(:,2:end) .^ 2)) + sum(sum(Theta2(:,2:end) .^ 2))) / (2 * m);
 
+delta3 = a3 - y;
+% size(delta3)
+% size(Theta2)
+% size(z2)
+delta2 = (delta3 * Theta2)(:,2:end) .* sigmoidGradient(z2);
 
+Delta1 = zeros(size(Theta1_grad));
+Delta2 = zeros(size(Theta2_grad));
 
+for t=1:m
+  
+  % a1t = a1(t,:)';
+  % z2t = z2(t,:)';
+  % a2t = a2(t,:)';
+  % z3t = z3(t,:)';
+  % a3t = a3(t,:)';
+  
+  % delta3t = delta3(t,:)';
+  % delta2t = delta2(t,:)';
+  
+  % whos
+  
+  % Delta1 = Delta1 + delta2t * [1; a1t]';
+  % Delta2 = Delta2 + delta3t * [1; a2t]';
+  
+  Delta1 = Delta1 + delta2(t,:)' * [1 a1(t,:)];
+  Delta2 = Delta2 + delta3(t,:)' * [1 a2(t,:)];
+  
+  
+end
 
-
-
-
-
-
-
+Theta1_grad = (Delta1 + lambda * [zeros(size(Theta1,1),1) Theta1(:,2:end)]) / m;
+Theta2_grad = (Delta2 + lambda * [zeros(size(Theta2,1),1) Theta2(:,2:end)]) / m;
 
 
 

@@ -55,7 +55,21 @@ error_val   = zeros(m, 1);
 
 % ---------------------- Sample Solution ----------------------
 
+n = size(yval, 1);
 
+for i=1:m
+  
+  % Train with i elements
+  %  Train linear regression with lambda = 0
+  [theta] = trainLinearReg([ones(i, 1) X(1:i, :)], y(1:i), lambda);
+  
+  % Compute error for i elements training
+  error_train(i) = linearRegCostFunction([ones(i, 1) X(1:i, :)], y(1:i), theta, 0);
+  
+  % Compute error for cross-validation test
+  error_val(i) = linearRegCostFunction([ones(n, 1) Xval], yval, theta, 0);  
+  
+end
 
 
 

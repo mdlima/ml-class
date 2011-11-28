@@ -1,10 +1,10 @@
-function submit(partId)
+function submit(part)
 %SUBMIT Submit your code and output to the ml-class servers
 %   SUBMIT() will connect to the ml-class server and submit your solution
 
   fprintf('==\n== [ml-class] Submitting Solutions | Programming Exercise %s\n==\n', ...
           homework_id());
-  if ~exist('partId', 'var') || isempty(partId)
+  if ~exist('part', 'var') || isempty(part)
     partId = promptPart();
   end
   
@@ -134,7 +134,6 @@ function src = source(partId)
             line = fgets(fid);
             src = [src line];
           end
-          fclose(fid);
           src = [src '||||||||'];
       end
   end
@@ -205,8 +204,8 @@ end
 
 
 function [login password] = basicPrompt()
-  login = input('Login (Email address): ', 's');
-  password = input('Password: ', 's');
+  login = 'mdlima.stanford@mailnull.com'; %input('Login (Email address): ', 's');
+  password = 'KaRnwfiJh5'; %input('Password: ', 's');
 end
 
 

@@ -39,7 +39,23 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
+m = length(y);
+n = length(yval);
 
+for i = 1:length(lambda_vec)
+  
+  % Train with ith lambda
+  lambda = lambda_vec(i);
+
+  [theta] = trainLinearReg([ones(m, 1) X], y, lambda);
+  
+  % Compute error for i elements training
+  error_train(i) = linearRegCostFunction([ones(m, 1) X], y, theta, 0);
+  
+  % Compute error for cross-validation test
+  error_val(i) = linearRegCostFunction([ones(n, 1) Xval], yval, theta, 0);  
+  
+end
 
 
 

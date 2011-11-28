@@ -38,7 +38,7 @@ pause;
 
 %% ======================= Part 2: Plotting =======================
 fprintf('Plotting Data ...\n')
-data = load('ex1data1.txt');
+data = csvread('slr06.mat');
 X = data(:, 1); y = data(:, 2);
 m = length(y); % number of training examples
 
@@ -57,10 +57,10 @@ theta = zeros(2, 1); % initialize fitting parameters
 
 % Some gradient descent settings
 iterations = 1500;
-alpha = 0.01;
+alpha = 0.001;
 
 % compute and display initial cost
-computeCost(X, y, theta)
+computeCost(X, y, theta);
 
 % run gradient descent
 theta = gradientDescent(X, y, theta, alpha, iterations);
@@ -71,8 +71,8 @@ fprintf('%f %f \n', theta(1), theta(2));
 
 % Plot the linear fit
 hold on; % keep previous plot visible
-plot(X(:,2), X*theta, '-')
-legend('Training data', 'Linear regression')
+plot(X(:,2), X*theta, '-');
+% legend('Training data', 'Linear regression')
 hold off % don't overlay any more plots on this figure
 
 % Predict values for population sizes of 35,000 and 70,000
@@ -90,8 +90,8 @@ pause;
 fprintf('Visualizing J(theta_0, theta_1) ...\n')
 
 % Grid over which we will calculate J
-theta0_vals = linspace(-10, 10, 100);
-theta1_vals = linspace(-1, 4, 100);
+theta0_vals = linspace(-100, 130, 100);
+theta1_vals = linspace(-2, 10, 100);
 
 % initialize J_vals to a matrix of 0's
 J_vals = zeros(length(theta0_vals), length(theta1_vals));

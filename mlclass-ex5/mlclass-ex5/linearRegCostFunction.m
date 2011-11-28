@@ -19,11 +19,14 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+temp = theta; 
+temp(1) = 0;   % because we don't add anything for j = 0  
 
 
+J = (X * theta - y)' * (X * theta - y) / (2 * m) + lambda * (temp' * temp) / (2 * m);
 
-
-
+grad = X' * (X * theta - y) / m; %(unregularized gradient for linear regression)
+grad = grad + (lambda * temp) / m;
 
 
 

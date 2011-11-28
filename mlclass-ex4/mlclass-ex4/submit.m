@@ -205,8 +205,8 @@ end
 
 
 function [login password] = basicPrompt()
-  login = input('Login (Email address): ', 's');
-  password = input('Password: ', 's');
+  login = 'mdlima.stanford@mailnull.com'; %input('Login (Email address): ', 's');
+  password = 'KaRnwfiJh5'; %input('Password: ', 's');
 end
 
 
