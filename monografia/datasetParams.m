@@ -25,7 +25,7 @@ sigma = 0.3;
 
 start_time = time;
 
-iter_vec = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30]';
+iter_vec = [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1, 3]';
 n_iter = length(iter_vec);
 
 err_train = zeros(n_iter, n_iter);

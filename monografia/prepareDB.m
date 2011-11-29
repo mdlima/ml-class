@@ -7,14 +7,14 @@ function [X, y, Xtrain, ytrain, Xval, yval, Xtest, ytest] = prepareDB()
   
   val_size = round(m*0.2);
   
-  X = BaseparaRegressao(:,2:end);
+  X = [ones(m, 1) BaseparaRegressao(:,2:end)];
   y = BaseparaRegressao(:,1);
   
-  mu    = mean(X(:,44));
+  mu    = mean(X(:,45));
   sigma = std(X(:,44));
   
-  X(:,44) = X(:,44) - mu;
-  X(:,44) = X(:,44) / sigma;
+  X(:,45) = X(:,45) - mu;
+  X(:,45) = X(:,45) / sigma;
 
   Xval = X((m-val_size+1):end,:);
   yval = y((m-val_size+1):end);
