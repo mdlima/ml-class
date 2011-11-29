@@ -1,4 +1,4 @@
-function [Xtrain, ytrain, Xval, yval, Xtest, ytest] = prepareDB()
+function [X, y, Xtrain, ytrain, Xval, yval, Xtest, ytest] = prepareDB()
 % Receives the complete training set and separates the test and cross-validation sets
 
   load "BaseparaRegressao.txt"
