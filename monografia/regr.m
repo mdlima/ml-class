@@ -1,7 +1,7 @@
 
 close; clear; clc;
 
-[Xtrain, ytrain, Xval, yval, Xtest, ytest] = prepareDB();
+[X, y, Xtrain, ytrain, Xval, yval, Xtest, ytest] = prepareDB()
 
 
 % Try different SVM Parameters here
