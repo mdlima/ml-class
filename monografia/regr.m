@@ -1,11 +1,7 @@
 
 close; clear; clc;
 
-<<<<<<< HEAD
 [X, y, Xtrain, ytrain, Xval, yval, Xtest, ytest] = prepareDB();
-=======
-[X, y, Xtrain, ytrain, Xval, yval, Xtest, ytest] = prepareDB()
->>>>>>> 4e30b8161371f64482810a9fbbd5a8de32d55598
 
 
 % Try different SVM Parameters here

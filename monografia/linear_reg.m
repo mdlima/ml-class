@@ -14,7 +14,7 @@ lambda = 1;
 
 % Compute and display initial cost and gradient for regularized logistic
 % regression
-[cost, grad] = costFunctionReg(initial_theta, Xtrain, ytrain, lambda);
+[cost, grad] = linearRegCostFunction(Xtrain, ytrain, initial_theta, lambda)
 
 fprintf('Cost at initial theta (zeros): %f\n', cost);
 
@@ -28,8 +28,8 @@ for l=0:0.5:5
 
   % Plot learning curve
   % figure(1);
-  [error_train, error_val, theta] = ...
-      learningCurveLogistic(Xtrain, ytrain, Xval, yval, lambda);
+  [error_train, error_val] = ...
+      learningCurve(Xtrain, ytrain, Xval, yval, lambda);
   plot(1:m, error_train, 1:m, error_val);
 
   title(sprintf('Polynomial Regression Learning Curve (lambda = %f)', lambda));
@@ -39,13 +39,11 @@ for l=0:0.5:5
   legend('Train', 'Cross Validation')
 
   fprintf('Polynomial Regression (lambda = %f)\n\n', lambda);
-  fprintf('Train error: %f\n', mean(double(predict(theta, Xtrain) ~= ytrain)) * 100);
-  fprintf('Cross-validation error: %f\n', mean(double(predict(theta, Xval) ~= yval)) * 100);
-  fprintf('# Training Examples\tTrain Cost\tCross Validation Cost\n');
-  for i = 1:m
+  fprintf('# Training Examples\tTrain Error\tCross Validation Error\n');
+  for i = 1:15:m
       fprintf('  \t%d\t\t%f\t%f\n', i, error_train(i), error_val(i));
   end
-    fprintf('----------------------\n\n');
+    
     % fprintf('Program paused. Press enter to continue.\n');
     % pause;
 end
@@ -60,7 +58,7 @@ lambda = 1;
 
 fprintf('Cost after training: %f\n', cost);
 
-% p = predict(theta, Xtrain);
+p = predict(theta, Xtrain);
 
-fprintf('Train error: %f\n', mean(double(predict(theta, Xtrain) ~= ytrain)) * 100);
-fprintf('Cross-validation error: %f\n', mean(double(predict(theta, Xval) ~= yval)) * 100);
+fprintf('Train error: %f\n', mean(double(p ~= ytrain)) * 100);
+fprintf('Cross-validation error: %f\n', mean(double(predict(theta, Xval) == yval)) * 100);
