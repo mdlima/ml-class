@@ -22,7 +22,7 @@ fprintf('Cost at initial theta (zeros): %f\n', cost);
 options = optimset('GradObj', 'on', 'MaxIter', 400);
 
 % Optimize lambda
-for l=0:30
+for l=0:0.5:5
   
   lambda = l;
 
@@ -43,9 +43,9 @@ for l=0:30
   for i = 1:m
       fprintf('  \t%d\t\t%f\t%f\n', i, error_train(i), error_val(i));
   end
-  
-  fprintf('Program paused. Press enter to continue.\n');
-  pause;
+    
+    % fprintf('Program paused. Press enter to continue.\n');
+    % pause;
 end
 
 % Train
