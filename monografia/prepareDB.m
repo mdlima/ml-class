@@ -11,10 +11,12 @@ function [X, y, Xtrain, ytrain, Xval, yval, Xtest, ytest] = prepareDB()
   y = BaseparaRegressao(:,1);
   
   mu    = mean(X(:,45));
-  sigma = std(X(:,44));
+  sigma = std(X(:,45));
   
   X(:,45) = X(:,45) - mu;
   X(:,45) = X(:,45) / sigma;
+  
+  [X] = polyFeatures(X);
 
   Xval = X((m-val_size+1):end,:);
   yval = y((m-val_size+1):end);

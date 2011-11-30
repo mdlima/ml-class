@@ -27,7 +27,7 @@ for l=0:0.5:5
   lambda = l;
 
   % Plot learning curve
-  figure(1);
+  % figure(1);
   [error_train, error_val] = ...
       learningCurve(Xtrain, ytrain, Xval, yval, lambda);
   plot(1:m, error_train, 1:m, error_val);
@@ -40,13 +40,16 @@ for l=0:0.5:5
 
   fprintf('Polynomial Regression (lambda = %f)\n\n', lambda);
   fprintf('# Training Examples\tTrain Error\tCross Validation Error\n');
-  for i = 1:m
+  for i = 1:15:m
       fprintf('  \t%d\t\t%f\t%f\n', i, error_train(i), error_val(i));
   end
     
     % fprintf('Program paused. Press enter to continue.\n');
     % pause;
 end
+
+% Find best lambda
+lambda = 1;
 
 % Train
 [theta, J, exit_flag] = fminunc(@(t)(costFunctionReg(t, Xtrain, ytrain, lambda)), initial_theta, options);
