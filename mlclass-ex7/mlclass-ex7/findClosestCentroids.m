@@ -21,9 +21,22 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+norms = zeros(size(X),K);
 
+for i=1:K
+  
+  dif = [];
+  for j=1:size(centroids,2)
+    dif = [dif (X(:,j) - centroids(i,j))];
+  end
+  % X
+  % centroids(i,:)
+  % dif
+  norms(:,i) = norm(dif,"rows");
+  
+end
 
-
+[m,idx] = min(norms,[],2);
 
 
 
