@@ -21,7 +21,9 @@ S = zeros(n);
 %
 
 
+Sigma = X'*X/size(X,1);
 
+[U, S, V] = svd(Sigma);
 
 
 
